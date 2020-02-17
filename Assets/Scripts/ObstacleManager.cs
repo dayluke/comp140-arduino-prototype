@@ -3,7 +3,7 @@
 public class ObstacleManager : MonoBehaviour
 {
     [SerializeField] private GameObject obstacle = null;
-    [SerializeField] private int spawnChance = 5;
+    [SerializeField] private float spawnChance = 1000f;
     [SerializeField] private int chanceOfLowerObstacle = 4;
 
     private void Start()
@@ -13,9 +13,10 @@ public class ObstacleManager : MonoBehaviour
 
     private void Update()
     {
-        // Increasing chance of obstacle spawning over time
         // Have different size obstacles.
-        if (Random.Range(0, spawnChance) < 1)
+        float calculatedSpawnChance = spawnChance * (200 / (1 + Time.time * Time.time));
+        Debug.Log(Mathf.Floor(calculatedSpawnChance));
+        if (Random.Range(0, calculatedSpawnChance) < 1f)
         {
             SpawnObstacle();
         }
