@@ -8,9 +8,9 @@ public class FanController : MonoBehaviour
     private void Update()
     {
         // Change this to a slider?
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
-            ball.velocity += Vector3.up * force;
+            ball.velocity += Vector3.up * force * Time.deltaTime;
         }
     }
 }
