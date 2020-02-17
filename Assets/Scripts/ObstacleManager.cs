@@ -4,6 +4,7 @@ public class ObstacleManager : MonoBehaviour
 {
     [SerializeField] private GameObject obstacle = null;
     [SerializeField] private int spawnChance = 5;
+    [SerializeField] private int chanceOfLowerObstacle = 4;
 
     private void Start()
     {
@@ -22,6 +23,10 @@ public class ObstacleManager : MonoBehaviour
 
     private void SpawnObstacle()
     {
-        Instantiate(obstacle);
+        GameObject go = Instantiate(obstacle);
+        if (Random.Range(0, chanceOfLowerObstacle) < 1)
+        {
+            go.GetComponent<Obstacle>().isTopObstacle = false;
+        }
     }
 }

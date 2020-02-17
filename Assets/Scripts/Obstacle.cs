@@ -4,6 +4,15 @@ public class Obstacle : MonoBehaviour
 {
     [SerializeField] private Vector3 endPoint = Vector3.zero;
     [SerializeField] private float speed = 5f;
+    public bool isTopObstacle = true;
+
+    private void Start()
+    {
+        if (!isTopObstacle)
+        {
+            transform.position -= (Vector3.up * (transform.position.y - 1.5f));
+        }
+    }
 
     private void Update()
     {
