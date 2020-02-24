@@ -7,6 +7,7 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private int chanceOfLowerObstacle = 4;
     [SerializeField] private bool debug = false;
     private static GameObject gameOverText;
+    private float currTime = 0f;
     
     // Initialised as 0 so that an obstacle is spawned on start
     private float waitTime = 0f;
@@ -19,23 +20,25 @@ public class ObstacleManager : MonoBehaviour
 
     private void Update()
     {
-        if (waitTime <= Time.time)
+        currTime += Time.deltaTime;
+
+        if (waitTime <= currTime)
         {
             // Have different size obstacles.
-            float calculatedSpawnChance = spawnChance * (200 / (1 + Time.time * Time.time));
+            float calculatedSpawnChance = spawnChance * (200 / (1 + currTime * currTime));
 
             if (Random.Range(0, calculatedSpawnChance) < 1f)
             {
                 SpawnObstacle();
 
                 // Wait between spawns
-                waitTime = Time.time + (calculatedSpawnChance / 100f);
+                waitTime = currTime + (calculatedSpawnChance / 100f);
 
                 if (debug)
                 {
                     Debug.LogFormat("Waiting for: {0} seconds", calculatedSpawnChance / 100f);
                     Debug.LogFormat("New Wait Time: {0} seconds", waitTime);
-                    Debug.Log(Time.time.ToString());
+                    Debug.Log(currTime.ToString());
                 }
             }
         }
