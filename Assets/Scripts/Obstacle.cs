@@ -16,6 +16,9 @@ public class Obstacle : MonoBehaviour
             transform.position -= (Vector3.up * (transform.position.y - 0.5f));
         }
         RandomiseHeight();
+
+        // Make speed slowly increase over time.
+        speed *= Time.time / 30f;
     }
 
     private void RandomiseHeight()
@@ -33,9 +36,6 @@ public class Obstacle : MonoBehaviour
 
     private void MoveObstacle()
     {
-        // Make speed slowly increase over time.
-        speed *= Time.time / 25f;
-
         transform.position += -Vector3.right * speed * Time.deltaTime;
     }
 
@@ -52,6 +52,7 @@ public class Obstacle : MonoBehaviour
         if (coll.tag == "Player")
         {
             Debug.Log("Player lost!");
+            Time.timeScale = 0f;
         }
     }
 }
