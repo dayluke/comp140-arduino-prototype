@@ -14,7 +14,6 @@ public class ObstacleManager : MonoBehaviour
     private void Start()
     {
         gameOverText = GameObject.Find("Text");
-        gameOverText.SetActive(false);
         
     }
 
@@ -54,7 +53,7 @@ public class ObstacleManager : MonoBehaviour
 
     public static void GameOver()
     {
-        gameOverText.SetActive(true);
+        gameOverText.transform.position -= Vector3.forward * 8.3f;
         Time.timeScale = 0f;
     }
 }
