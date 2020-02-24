@@ -34,6 +34,8 @@ public class Obstacle : MonoBehaviour
     private void MoveObstacle()
     {
         // Make speed slowly increase over time.
+        speed *= Time.time / 25f;
+
         transform.position += -Vector3.right * speed * Time.deltaTime;
     }
 
