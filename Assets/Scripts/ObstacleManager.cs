@@ -6,9 +6,17 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private float spawnChance = 1000f;
     [SerializeField] private int chanceOfLowerObstacle = 4;
     [SerializeField] private bool debug = false;
+    private static GameObject gameOverText;
     
     // Initialised as 0 so that an obstacle is spawned on start
     private float waitTime = 0f;
+
+    private void Start()
+    {
+        gameOverText = GameObject.Find("Text");
+        gameOverText.SetActive(false);
+        
+    }
 
     private void Update()
     {
@@ -42,5 +50,11 @@ public class ObstacleManager : MonoBehaviour
         {
             go.GetComponent<Obstacle>().isTopObstacle = false;
         }
+    }
+
+    public static void GameOver()
+    {
+        gameOverText.SetActive(true);
+        Time.timeScale = 0f;
     }
 }
