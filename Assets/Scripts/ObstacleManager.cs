@@ -52,6 +52,7 @@ public class ObstacleManager : MonoBehaviour
         {
             go.GetComponent<Obstacle>().isTopObstacle = false;
         }
+        go.GetComponent<Obstacle>().Initialise(currTime);
     }
 
     public static void GameOver()

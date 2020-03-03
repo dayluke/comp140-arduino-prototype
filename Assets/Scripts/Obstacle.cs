@@ -9,7 +9,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private float maxHeight = 5f;
     // [SerializeField] private float spaceBetween; // <- Spawn two obstacles every time??
 
-    private void Start()
+    public void Initialise(float time)
     {
         if (!isTopObstacle)
         {
@@ -18,7 +18,7 @@ public class Obstacle : MonoBehaviour
         RandomiseHeight();
 
         // Make speed slowly increase over time.
-        speed *= Time.time / 30f;
+        speed *= time / 30f;
     }
 
     private void RandomiseHeight()
