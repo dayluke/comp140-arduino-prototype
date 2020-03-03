@@ -1,13 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject obstacleManager;
+    [SerializeField] private GameObject obstacleManager = null;
+    [SerializeField] private Text scoreText = null;
+    [SerializeField] private int score = 0;
+    private float timeGameStarted = 0;
+    private bool gameStarted = false;
+
+    private void Update()
+    {
+        if (gameStarted) UpdateScore();
+    }
+
+    private void UpdateScore()
+    {
+        score = (int)Mathf.Floor(Time.fixedUnscaledTime - timeGameStarted);
+        scoreText.text = "Score: " + score;
+    }
 
     public void OnStartClick()
     {
         Instantiate(obstacleManager);
+        gameStarted = true;
+        timeGameStarted = Time.fixedUnscaledTime;
     }
 }

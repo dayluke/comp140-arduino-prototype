@@ -14,7 +14,7 @@ public class ObstacleManager : MonoBehaviour
 
     private void Start()
     {
-        gameOverText = GameObject.Find("Text");
+        gameOverText = GameObject.Find("Game Over Text");
         
     }
 
