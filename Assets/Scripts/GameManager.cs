@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject obstacleManager = null;
     [SerializeField] private Text scoreText = null;
-    [SerializeField] private int score = 0;
+    private static int score = 0;
     private float timeGameStarted = 0;
     private bool gameStarted = false;
 
@@ -25,5 +25,10 @@ public class GameManager : MonoBehaviour
         Instantiate(obstacleManager);
         gameStarted = true;
         timeGameStarted = Time.fixedUnscaledTime;
+    }
+
+    public static void GameEnded()
+    {
+        GameOver _ = new GameOver(score);
     }
 }

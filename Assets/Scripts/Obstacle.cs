@@ -52,7 +52,7 @@ public class Obstacle : MonoBehaviour
         if (coll.tag == "Player")
         {
             Debug.Log("Player lost!");
-            ObstacleManager.GameOver();
+            GameManager.GameEnded();
         }
     }
 }

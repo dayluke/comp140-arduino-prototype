@@ -6,17 +6,10 @@ public class ObstacleManager : MonoBehaviour
     [SerializeField] private float spawnChance = 1000f;
     [SerializeField] private int chanceOfLowerObstacle = 4;
     [SerializeField] private bool debug = false;
-    private static GameObject gameOverText;
     private float currTime = 0f;
     
     // Initialised as 0 so that an obstacle is spawned on start
     private float waitTime = 0f;
-
-    private void Start()
-    {
-        gameOverText = GameObject.Find("Game Over Text");
-        
-    }
 
     private void Update()
     {
@@ -53,11 +46,5 @@ public class ObstacleManager : MonoBehaviour
             go.GetComponent<Obstacle>().isTopObstacle = false;
         }
         go.GetComponent<Obstacle>().Initialise(currTime);
-    }
-
-    public static void GameOver()
-    {
-        gameOverText.transform.position -= Vector3.forward * 8.3f;
-        Time.timeScale = 0f;
     }
 }
